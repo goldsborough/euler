@@ -33,31 +33,17 @@ triangle = """
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 """
 
-def get_sum(values, row, column, sums={}):
+def largest_triangle_sum(values, row=0, column=0, sums={}):
     if (row, column) in sums:
         return sums[row, column]
     s = values[row][column]
-    left = 0
-    right = 0
-    if column > 0:
-        left = get_sum(values, row - 1, column - 1, sums)
-    if column < row:
-        right = get_sum(values, row - 1, column, sums)
-    s += max([left, right])
+    if row + 1 < len(values):
+        left = largest_triangle_sum(values, row + 1, column, sums)
+        right = largest_triangle_sum(values, row + 1, column + 1, sums)
+        s += max([left, right])
     sums[row, column] = s
 
     return s
-
-
-def largest_triangle_sum(values):
-    largest = 0
-    last_row = len(values) - 1
-    for column in range(len(values[-1])):
-        s = get_sum(values, last_row, column)
-        if s > largest:
-            largest = s
-
-    return largest
 
 
 def main():

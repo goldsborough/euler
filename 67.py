@@ -14,7 +14,6 @@ That is, 3 + 7 + 4 + 9 = 23.
 Find the maximum total from top to bottom in triangle.txt (right click and 'Save Link/Target As...'), a 15K text file containing a triangle with one-hundred rows.
 """
 
-
 def get_sum(values, row, column, sums={}):
     if (row, column) in sums:
         return sums[row, column]
